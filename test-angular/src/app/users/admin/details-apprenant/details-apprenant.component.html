@@ -1,0 +1,138 @@
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar class="toolbar"> Menu <button class="close_menu"  type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"> <mat-icon> clear</mat-icon></button> </mat-toolbar>
+        <hr style="width: 100%;height: 2px; background-color: #ffffff;margin: 1vh auto;">
+        <section style="width: 100%;display: flex;justify-content: center;align-items: center;">
+          <img style="height:15vh;width:15vh; border-radius: 50%;" src="assets/image/undraw_Booking_re_gw4j(1).png">
+        </section>
+        <hr style="width: 15vh;height: 2px;margin: 1vh auto;background-color: #ffffff;">
+        <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+          Lebou Ndiaye Dieye
+        </section>
+        <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+          Administrateur
+        </section>
+        <hr style="width: 80%;height: 2px; background-color: #ffffff;margin: 1vh auto 0;">
+       
+      <mat-nav-list>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']">  <mat-icon>how_to_reg</mat-icon> PROFILS</a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active">  <mat-icon>supervisor_account</mat-icon>  <span>UTILISATEURS</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item [routerLink]="['/','admin','profil_sorties']"><mat-icon>school</mat-icon> <span>PROFILS SORTIE</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item [routerLink]="['/','admin','competences']"> <mat-icon>insights</mat-icon> <span>COMPETENCES</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']"> <mat-icon>reduce_capacity</mat-icon> <span>PROMOS</span></a>
+        </section>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar class="header_bar">
+        <!-- <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button> -->
+        <span> <button  type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+         >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button></span>
+      <span> GESTION DES UTILISATEURS</span>
+      <mat-card-actions >
+        <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
+      </mat-card-actions>
+      </mat-toolbar>
+ <hr>
+ <div  fxFlexFill class="main-div">
+   
+     <mat-card fxFlex="80" style="margin: 0 auto;height:max-content;background-color: #cacfd2;height: 80vh;">
+         <mat-toolbar style="background-color: #85929e;color: #ffffff;text-align: center;">
+               <span style="margin: 0 auto;font-weight: bold;">DETAILS</span>
+         </mat-toolbar>
+         <p>
+             <mat-toolbar style="background-color: #2b2d42;color: #ffffff;">
+                 <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                     <mat-icon>menu</mat-icon>
+                 </button>
+             <span>Les informations de l'apprenant </span>
+             <span class="example-spacer"></span>
+         
+          <button class="btn-dialog-close" style="background-color: #f44336;color:#ffffff" mat-stroked-button (click)='onClose()' tabIndex='-1'>
+            <span>Retour</span>
+            <mat-icon>clear</mat-icon></button>
+         </mat-toolbar>
+         </p>
+         <mat-card>
+           <section style="width: 100%;">
+          <mat-card fxFlex=70>
+            <table class="example-full-width">
+              <tr>
+                <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              <strong> Username:</strong> *******************
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              <strong>Password: </strong>**********************
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              Prenom(s): {{apprenant.prenom}}
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              Nom: {{apprenant.nom}}
+            </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card style="border-bottom: 2px solid #cacfd2;">
+              email: {{apprenant.email}}
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+    </mat-card>
+ 
+        <mat-card fxFlex=30 style="display: flex; justify-content: center;align-items: center;">
+          <img style="width: 100%;height: 10vw; border-radius: 50px;" [src]="(transform(this.apprenant.photo))">
+        </mat-card>
+      </section>
+           <!-- <div class="form-group" style="background-color: red;">
+             <label for="file">Choose File</label>
+             <input type="file" name="photo" id="file" #event (change)='handleFileInput($event.target)'>
+           </div> -->
+           <hr>
+           <button mat-raised-button class="btn btn-success" (click)="generatePdf()" style="color: #ffffff;"  type="submit">Générer la carte</button>
+       
+     </mat-card>     
+   </mat-card>
+ </div>

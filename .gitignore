@@ -1,0 +1,81 @@
+############################################################################""
+###> symfony/framework-bundle ###
+lebzo_pfr/.env
+lebzo_pfr/.env.local
+lebzo_pfr/.env.local.php
+lebzo_pfr/.env.*.local
+lebzo_pfr/config/secrets/prod/prod.decrypt.private.php
+lebzo_pfr/public/bundles/
+lebzo_pfr/var/
+lebzo_pfr/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+lebzo_pfr/.phpunit
+lebzo_pfr/.phpunit.result.cache
+lebzo_pfr/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> lexik/jwt-authentication-bundle ###
+lebzo_pfr/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+
+
+
+###############################################################################
+### Angular FRamework
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+test-angular/dist
+test-angular/tmp
+test-angular/out-tsc
+# Only exists if Bazel was run
+test-angular/bazel-out
+
+# dependencies
+test-angular/node_modules
+
+# profiling files
+test-angular/chrome-profiler-events*.json
+test-angular/speed-measure-plugin*.json
+
+# IDEs and editors
+test-angular/.idea
+test-angular/.project
+test-angular/.classpath
+test-angular/.c9/
+test-angular/*.launch
+test-angular/.settings/
+test-angular/*.sublime-workspace
+
+# IDE - VSCode
+test-angular/.vscode/*
+test-angular/!.vscode/settings.json
+test-angular/!.vscode/tasks.json
+test-angular/!.vscode/launch.json
+test-angular/!.vscode/extensions.json
+test-angular/.history/*
+
+# misc
+test-angular/.sass-cache
+test-angular/connect.lock
+test-angular/coverage
+test-angular/libpeerconnection.log
+test-angular/npm-debug.log
+test-angular/yarn-error.log
+test-angular/testem.log
+test-angular/typings
+
+# System Files
+test-angular/.DS_Store
+test-angular/Thumbs.db
+
+
+
+
+
+
+

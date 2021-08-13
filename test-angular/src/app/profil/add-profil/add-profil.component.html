@@ -1,0 +1,35 @@
+<div style="width: 50%;float: left;">
+<mat-toolbar style="font-size:0.7vw;margin: 0;color:#2b2d42;background-color: #cacfd2;">
+<mat-toolbar-row style="margin: 0;">
+   <span class="example-spacer">AJOUTER UN NOUVEAU PROFIL</span>
+   <button class="btn-dialog-close" style="background-color: #2b2d42;color: #ffffff;" #close mat-stroked-button (click)="onClose()" tabIndex='-1'>Fermer<mat-icon>clear</mat-icon></button>
+</mat-toolbar-row>
+</mat-toolbar>
+<form #loginFormulaire="ngForm">
+   <label for="libelle" style="width: 100%;text-align: center;margin: 0;font-size: 1vw;">
+      Libelle
+   </label>
+   <mat-divider></mat-divider>
+   <input text required ngModel name="libelle" type="text" class="form-control" id="libelle">
+   <mat-divider></mat-divider>
+   <br>
+   <button [disabled]="loginFormulaire.invalid" style="width: 100%;color: #ffffff;" class="btn btn-success" (click)="post(loginFormulaire)">
+      Ajouter
+   </button>
+</form>
+</div>
+<div style="width: 50%;float: right;">
+   <div class="card text-center">
+      <div class="card-header" style="color:#2b2d42;background-color: #cacfd2;">
+        Spécifications
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">A prendre en compte</h5>
+        <p class="card-text">Fournir un libelle non existant et pas d'espace</p>
+        <a class="btn" style="background-color: #f44336;color: #ffffff;">ATTENTION</a>
+      </div>
+    </div>
+</div>
+<div class="card text-center card-header" style="width: 100%;margin: 0;background-color: #2b2d42;color: #ffffff;">
+   Profil Add Part
+</div>

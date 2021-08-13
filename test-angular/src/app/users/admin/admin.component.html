@@ -1,0 +1,181 @@
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="toolbar"> Menu <button class="close_menu"  type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"> <mat-icon> clear</mat-icon></button> </mat-toolbar>
+      <hr style="width: 100%;height: 2px; background-color: #ffffff;margin: 1vh auto;">
+      <section style="width: 100%;display: flex;justify-content: center;align-items: center;">
+        <img style="height:15vh;width:15vh; border-radius: 50%;" src="assets/image/undraw_Booking_re_gw4j(1).png">
+      </section>
+      <hr style="width: 15vh;height: 2px;margin: 1vh auto;background-color: #ffffff;">
+      <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+        Amadou Ndiaye
+      </section>
+      <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+        Administrateur
+      </section>
+      <hr style="width: 80%;height: 2px; background-color: #ffffff;margin: 1vh auto 0;">
+     
+    <mat-nav-list>
+      <section class="toolbar_user">
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']">  <mat-icon>how_to_reg</mat-icon> PROFILS</a>
+      </section>
+      <section class="toolbar_user">
+          <a mat-list-item routerLinkActive="active">  <mat-icon>supervisor_account</mat-icon>  <span>UTILISATEURS</span></a>
+      </section>
+      <section class="toolbar_user">
+          <a mat-list-item [routerLink]="['/','admin','profil_sorties']"><mat-icon>school</mat-icon> <span>PROFILS SORTIE</span></a>
+      </section>
+      <section class="toolbar_user">
+          <a mat-list-item [routerLink]="['/','admin','competences']"> <mat-icon>insights</mat-icon> <span>COMPETENCES</span></a>
+      </section>
+      <section class="toolbar_user">
+          <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']"> <mat-icon>reduce_capacity</mat-icon> <span>PROMOS</span></a>
+      </section>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="header_bar">
+      <!-- <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button> -->
+      <span> <button  type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+       >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button></span>
+    <span> GESTION DES UTILISATEURS</span>
+    <mat-card-actions >
+      <button mat-flat-button mat-button style="background-color: #2b2d42;color: #ffffff;" (click)="loggout()"> Deconnecter </button>
+    </mat-card-actions>
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+  <div style="margin: 1vw auto;width: 90%;font-weight: bold;">
+    <section style="padding:1vh; display: flex;align-items: center;">
+      <button class="btn btn-success" style="width: 30%;font-size: 1.2vw;"  mat-raised-button (click)="onAddUser()">
+        <mat-icon>add</mat-icon> Nouvel Utilisateur
+      </button>
+     
+      <section fxFlex style="color: #ffffff;margin-left: 5vw;display: flex;align-items: center; float: right;background-color: #85929e;padding: 1vh;border-radius: 5px;font-size: 1.2vw;">
+       
+        <span>Recherches</span>
+        <mat-icon>search</mat-icon>
+      <input fxFlex placeholder="Search" style="border-radius: 50px;border-left: 1px solid #ffffff;" type="text"/>
+    </section>
+  </section>
+      <hr>
+      <mat-selection-list class="selection_list" #users [multiple]="false">
+        <mat-list-option id="{{user}}" class="selection_element" [ngClass]="{'activate':(profils_activate && user===user_active)}" (click)="profils_act(user)" (click)="selectElement(users.selectedOptions.selected[0]?.value)" fxFlex *ngFor="let user of typeOfUsers" [value]="user">
+          {{user}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <!-- <p>
+        Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+      </p>
+       -->
+      <table style="width: 100%; margin:0 auto;background-color:#cacfd2;color: #ffffff;" mat-table matSort [dataSource]="datasource" class="mat-elevation-z8">
+
+      <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+      <!-- Position Column --> 
+          <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef class="th_class"> ID. </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+      <!-- Photo Column --> 
+          <ng-container matColumnDef="photo">
+              <th mat-header-cell  *matHeaderCellDef class="th_class">Photo</th>
+              <td mat-cell *matCellDef="let element" > <img style="width: 2vw;height: 2vw; border-radius: 50px;" [src]="(transform(element.photo))"> </td>
+          </ng-container>
+  
+      <!-- Prenom Column -->
+          <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef class="th_class"> Prenom </th>
+            <td mat-cell *matCellDef="let element" id="{{element.id}}_prenom"> {{element.prenom}} </td>
+          </ng-container>
+
+      <!-- Nom Column -->
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef class="th_class"> Nom </th>
+            <td mat-cell *matCellDef="let element" id="{{element.id}}_nom"> {{element.nom}} </td>
+          </ng-container>
+
+      <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef class="th_class">Email</th>
+            <td mat-cell *matCellDef="let element" id="{{element.id}}_email"> {{element.email}} </td>
+          </ng-container>
+
+      <!-- Profil Column -->
+          <ng-container matColumnDef="profil">
+            <th mat-header-cell *matHeaderCellDef class="th_class">Profil</th>
+            <td mat-cell *matCellDef="let element" id="{{element.id}}_profil" [contentEditable]="edit"> {{element.profil.libelle}} </td>
+          </ng-container>
+    
+      <!-- Archive Column -->
+          <ng-container matColumnDef="archive">
+            <th mat-header-cell *matHeaderCellDef class="th_class">Archive</th>
+            <td mat-cell *matCellDef="let element"> {{element.archive}} </td>
+          </ng-container>
+  
+       <!-- Details Column-->
+       <ng-container matColumnDef="Details">
+        <th mat-header-cell *matHeaderCellDef class="th_class">Details</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-raised-button  class="details_button" [disabled]="!apprenant_active" (click)="display_details_apprenants(row)" >Details</button>
+        </td>
+      </ng-container>
+
+      <!-- Edit Column-->
+          <ng-container matColumnDef="Edit">
+            <th mat-header-cell *matHeaderCellDef class="th_class">Edit</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-raised-button id="{{row.id}}" class="edit_button"  (click)="onEditUser(row)">{{editButton}}</button>
+            </td>
+          </ng-container>
+  
+      <!--Delete Column-->
+          <ng-container matColumnDef="Delete">
+            <th mat-header-cell *matHeaderCellDef class="th_class">Delete</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-raised-button class="delete_button" color="warn"  (click)="onDeleteUser(row)">Delete </button>
+            </td>
+          </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row  *matRowDef="let row; columns: displayedColumns;" [style.background_color]="fileToUpload? 'red':'yellow' "></tr>
+  </table>
+  <mat-paginator style="background-color: #cacfd2;" [length]="100"
+  [pageSize]="2"
+  [pageSizeOptions]="[2, 10, 25, 100]">
+</mat-paginator>
+  </div>

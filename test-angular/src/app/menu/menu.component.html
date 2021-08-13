@@ -1,0 +1,39 @@
+    <mat-sidenav #drawer  class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar class="toolbar"> Menu <button class="close_menu"  type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"> <mat-icon> clear</mat-icon></button> </mat-toolbar>
+        <hr style="width: 100%;height: 2px; background-color: #ffffff;margin: 1vh auto;">
+        <section style="width: 100%;display: flex;justify-content: center;align-items: center;">
+          <img style="height:15vh;width:15vh; border-radius: 50%;" src="assets/image/undraw_Booking_re_gw4j(1).png">
+        </section>
+        <hr style="width: 15vh;height: 2px;margin: 1vh auto;background-color: #ffffff;">
+        <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+          Lebou Ndiaye Dieye
+        </section>
+        <section style="color: #ffffff;display: flex;justify-content: center;align-items: center;">
+          Administrateur
+        </section>
+        <hr style="width: 80%;height: 2px; background-color: #ffffff;margin: 1vh auto 0;">
+       
+      <mat-nav-list>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','profils']">  <mat-icon>how_to_reg</mat-icon> PROFILS</a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active">  <mat-icon>supervisor_account</mat-icon>  <span>UTILISATEURS</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item [routerLink]="['/','admin','profil_sorties']"><mat-icon>school</mat-icon> <span>PROFILS SORTIE</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item [routerLink]="['/','admin','competences']"> <mat-icon>insights</mat-icon> <span>COMPETENCES</span></a>
+        </section>
+        <section class="toolbar_user">
+            <a mat-list-item routerLinkActive="active" [routerLink]="['/','admin','promos']"> <mat-icon>reduce_capacity</mat-icon> <span>PROMOS</span></a>
+        </section>
+      </mat-nav-list>
+    </mat-sidenav>

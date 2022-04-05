@@ -97,14 +97,19 @@ class PromoController extends AbstractController
         //-----------------------------------------------------
         $doc = $request->files->get("excelFile");
 
+        //RECUPERATION DU FICHIER EXCEL
         $file= IOFactory::identify($doc);
         $reader= IOFactory::createReader($file);
         $spreadsheet=$reader->load($doc);
 
-        $tab_apprenants= $spreadsheet->getActivesheet()->toArray();    
+        //RECUPERATION DES DONNEES DU FICHIER EXCEL 
+        $tab_apprenants= $spreadsheet->getActivesheet()->toArray();
+        
+        //TITRE DES COLONNES 
         $waited_Array=['prenom','nom','email','username','password'];
         $attr=$tab_apprenants[0];
 
+        //Verification des titres des colonnes
         $valide_excel= true;
         foreach($waited_Array as $element){
             if (!in_array($element, $attr)) {
